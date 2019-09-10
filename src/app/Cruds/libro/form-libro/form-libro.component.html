@@ -1,0 +1,46 @@
+<div class="container my-3">
+    <div class="card">
+        <div class="card-header">Crear Libro</div>
+        <div class="card-body">
+            <form>
+                <div class="form-group row">
+                    <label for="titulo" class="col-form-label col-sm-2">Titulo</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" [(ngModel)]="libro.titulo" name="titulo">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="edicion" class="col-form-label col-sm-2">Edicion</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" [(ngModel)]="libro.edicion" name="edicion">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="annio" class="col-form-label col-sm-2">Año</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" [(ngModel)]="libro.annio" name="annio">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="idautor" class="col-form-label col-sm-2">Autor</label>
+                    <div class="col-sm-6">
+                        <!--<input type="text" class="form-control" [(ngModel)]="libro.annio" name="annio">/-->
+                        <select name="idautor" [(ngModel)]="libro.idautor">
+                            <option *ngFor="let aut of autores"  [value]="aut.idautor"
+                            [selected]="libro.idautor==aut.idautor ? true : null">{{nomAutor(aut.idautor)}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary" role="button" (click)="create()"
+                            *ngIf="!libro.idlibro else elseBlock">Crear</button>
+                        <ng-template #elseBlock>
+                            <button class="btn btn-primary" role="button" (click)="actualizar()">Actualizar</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
